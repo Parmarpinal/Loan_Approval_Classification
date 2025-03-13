@@ -2,6 +2,4 @@
 __pycache__/
 *.pyc
 
-# Ignore model checkpoints and Jupyter notebook checkpoints
-*.pkl
 .ipynb_checkpoints/
