@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Classification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--https://png.pngtree.com/background/20210711/original/pngtree-atmospheric-black-gold-real-estate-grand-opening-poster-picture-image_1075443.jpg-->
+    <!--https://img.freepik.com/premium-vector/credit-loan-background_23-2151927272.jpg-->
+    <style>
+        body {
+            background: url('https://img.freepik.com/free-vector/point-coins-wallpaper_23-2148850438.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background: rgba(150, 137, 75, 0.3); /* Light transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            color: rgba(248, 224, 196, 0.95);
+            background-color:rgb(134, 81, 19);
+        }
+
+        input[type="submit"]:hover {
+            background-color:rgb(160, 110, 53);
+            color: rgba(254, 225, 192, 0.95);
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+        .myLable{
+            color: rgb(160, 110, 53);
+            font-weight: bold;
+        }
+        .myHeading{
+            color: rgb(134, 81, 19);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid form-container">
+        <h3 class="text-center myHeading">Enter Loan Details for Approval</h3>
+        <form method="POST" action="/predict">
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="age" class="form-label myLable">Age:</label>
+                    <input type="number" class="form-control" name="age" required>
+                </div>
+                <div class="col">
+                    <label for="gender" class="form-label myLable">Gender:</label>
+                    <div>
+                        <input class="form-check-input" type="radio" name="gender" id="male" value=1 checked>
+                        <label class="form-check-label" for="male">
+                            Male
+                        </label>
+                        
+                        <input class="form-check-input" type="radio" name="gender" id="female" value=0>
+                        <label class="form-check-label" for="female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="income" class="form-label myLable">Income:</label>
+                    <input type="number" class="form-control" name="income" required>
+                </div>
+                <div class="col">
+                    <label for="experience" class="form-label myLable">Emp. experience (Year):</label>
+                    <input type="number" class="form-control" name="experience" required>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="education" class="form-label myLable">Education:</label>
+                    <select name="education" class="form-select" required>
+                        <option value="">Select education</option>
+                        <option value=1>Bachelor</option>
+                        <option value=0>Associate</option>
+                        <option value=3>High School</option>
+                        <option value=4>Master</option>
+                        <option value=2>Doctorate</option>
+                    </select>
+                </div>
+    
+                <div class="col">
+                    <label for="ownership" class="form-label myLable">Home Ownership:</label>
+                    <select class="form-control" name="ownership" required>
+                        <option value="">Select home ownership</option>
+                        <option value="rent">Rent</option>
+                        <option value="mortgage">Mortgage</option>
+                        <option value="own">Own</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <label for="intent" class="form-label myLable">Loan Intent:</label>
+                    <select name="intent" class="form-select" required>
+                        <option value="">Select Loan Intent</option>
+                        <option value="education">Education</option>
+                        <option value="medical">Medical</option>
+                        <option value="venture">Venture</option>
+                        <option value="personal">Personal</option>
+                        <option value="debt">Debt Consolidation</option>
+                        <option value="home">Home Improvement</option>
+                    </select>
+                </div>
+    
+                <div class="col">
+                    <label for="amount" class="form-label myLable">Loan amount:</label>
+                    <input type="number" class="form-control" name="amount" required>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <input type="submit" class="btn mt-3" value="Predict">
+                </div>
+            </div>
+                       
+        </form>
+
+        <h2>{{ prediction_text }}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
